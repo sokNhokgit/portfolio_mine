@@ -1,0 +1,72 @@
+// src/components/about/About.tsx
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { AboutNavigation } from "./AboutNavigation";
+import { SkillTree } from "./SkillTree";
+import { SkillDetail } from "./SkillDetail";
+
+type TabName = "card1" | "card2";
+
+export default function About() {
+  const [activeTab, setActiveTab] = useState<TabName>("card1");
+  const [direction, setDirection] = useState<"left" | "right">("right");
+
+  const variants = {
+    enterLeft: { opacity: 0, x: -100 },
+    enterRight: { opacity: 0, x: 100 },
+    center: { opacity: 1, x: 0 },
+    exitLeft: { opacity: 0, x: -100 },
+    exitRight: { opacity: 0, x: 100 },
+  };
+
+  const tabs: TabName[] = ["card1", "card2"];
+  const currentIndex = tabs.indexOf(activeTab);
+
+  const goPrev = () => {
+    if (currentIndex > 0) {
+      setDirection("left");
+      setActiveTab(tabs[currentIndex - 1]);
+    }
+  };
+
+  const goNext = () => {
+    if (currentIndex < tabs.length - 1) {
+      setDirection("right");
+      setActiveTab(tabs[currentIndex + 1]);
+    }
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-white flex flex-col px-6 overflow-hidden">
+      <AboutNavigation
+        tabs={tabs}
+        activeTab={activeTab}
+        currentIndex={currentIndex}
+        goPrev={goPrev}
+        goNext={goNext}
+        setActiveTab={setActiveTab}
+        setDirection={setDirection}
+      />
+
+      {/* --- Content Container --- */}
+      <div className="relative w-full max-w-6xl mx-auto h-[500px]">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={activeTab}
+            variants={variants}
+            initial={direction === "right" ? "enterRight" : "enterLeft"}
+            animate="center"
+            exit={direction === "right" ? "exitLeft" : "exitRight"}
+            transition={{ duration: 0.5 }}
+            className="absolute top-0 left-0 w-full h-full z-0"
+          >
+            {activeTab === "card1" ? <SkillTree /> : <SkillDetail />}
+          </motion.div>
+
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
