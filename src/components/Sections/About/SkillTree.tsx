@@ -1,71 +1,72 @@
-// src/components/about/SkillTree.tsx
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+// src/components/about/CardOne.tsx
+import React from "react";
 
-interface SkillItem {
-  icon: string; // Path to the icon
-  name: string; // Label under the icon
+interface Node {
+  id: string;
+  label: string;
+  top: string;
+  left: string;
+  color: string;
 }
 
-interface SkillTreeProps {
-  skillItems?: SkillItem[]; // Optional prop for array of {icon, name}
-}
+const nodes: Node[] = [
+  { id: "1", label: "A", top: "60%", left: "25%", color: "#15b48c" },
+  { id: "2", label: "B", top: "40%", left: "50%", color: "#facc15" }, // yellow-400
+  { id: "3", label: "C", top: "60%", left: "75%", color: "#ef4444" }, // red-500
+  { id: "4", label: "D", top: "20%", left: "50%", color: "#3b82f6" }, // blue-500
+];
 
-export const SkillTree: React.FC<SkillTreeProps> = ({ 
-  skillItems = [
-    { icon: '/icons/html.png', name: 'HTML' },
-    { icon: '/icons/css.png', name: 'CSS' },
-    { icon: '/icons/js.png', name: 'JavaScript' },
-    { icon: '/icons/vue.png', name: 'Vue.js' },
-    { icon: '/icons/php.png', name: 'PHP' },
-    { icon: '/icons/nodejs.png', name: 'Node.js' },
-  ] 
-}) => {
-  const [time, setTime] = useState(0);
+// Define connections between nodes by index
+const connections: [number, number][] = [
+  [0, 1],
+  [1, 2],
+  [1, 3],
+];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((prevTime) => prevTime + 0.05); // Gentle increment
-    }, 50);
-    return () => clearInterval(interval);
-  }, []);
+export const SkillTree: React.FC = () => (
+  <div className="w-full h-full relative">
+    {/* Lines */}
+    <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      {connections.map(([from, to], i) => {
+        const fromNode = nodes[from];
+        const toNode = nodes[to];
 
-  // Subtle sway animation using time (like leaves on a tree)
-  const swayX = Math.sin(time) * 2; // -2 to +2px horizontal offset
+        // Convert percentages to numbers for path calculation
+        const fromX = parseFloat(fromNode.left) / 100;
+        const fromY = parseFloat(fromNode.top) / 100;
+        const toX = parseFloat(toNode.left) / 100;
+        const toY = parseFloat(toNode.top) / 100;
 
-  return (
-    <div className="w-full h-full relative flex overflow-x-auto px-4">
-      {/* Animated horizontal row */}
-      <div 
-        className="flex flex-row space-x-4" 
-        style={{ transform: `translateX(${swayX}px)` }} // Tie in time-based animation
+        // Use cubic Bezier curve for crooked/curved lines
+        const path = `
+          M ${fromX * 100}% ${fromY * 100}%
+          C ${(fromX * 100 + toX * 100) / 2}% ${fromY * 100}%,
+            ${(fromX * 100 + toX * 100) / 2}% ${toY * 100}%,
+            ${toX * 100}% ${toY * 100}%
+        `;
+
+        return (
+          <path
+            key={i}
+            d={path}
+            stroke="#ccc"
+            strokeWidth="2"
+            fill="none"
+          />
+        );
+      })}
+    </svg>
+
+    {/* Nodes */}
+    {nodes.map((node) => (
+      <div
+        key={node.id}
+        className="absolute w-12 h-12 rounded-full flex items-center justify-center text-white cursor-pointer"
+        style={{ top: node.top, left: node.left, backgroundColor: node.color }}
+        title={`Node ${node.label}`}
       >
-        {skillItems.map((item, index) => (
-          <div
-            key={`${item.icon}-${index}`}
-            className="flex flex-col items-center flex-shrink-0" // Stack icon + label vertically, centered
-          >
-            {/* Icon Circle */}
-            <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 mb-1"> {/* mb-1 for spacing under icon */}
-              {/* <Image
-                src={item.icon}
-                alt={`${item.name} Icon`}
-                className="w-full h-full object-cover p-3" // Removed p-4 to avoid inner padding distortion
-                width={64}
-                height={64}
-                placeholder="blur" // Smooth loading (omit blurDataURL unless providing base64)
-                blurDataURL="blur"
-                priority={index < 3} // Eager-load first few
-              /> */}
-              <i className="devicon-devicon-plain"></i>
-            </div>
-            {/* Label */}
-            <p className="text-xs text-gray-600 text-center font-medium leading-tight"> {/* Small, subtle text */}
-              {item.name}
-            </p>
-          </div>
-        ))}
+        {node.label}
       </div>
-    </div>
-  );
-};
+    ))}
+  </div>
+);

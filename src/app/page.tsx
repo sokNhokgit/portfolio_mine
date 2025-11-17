@@ -1,5 +1,5 @@
 import Greeting from "@/components/Sections/Greeting";
-import About from "@/components/Sections/About";
+import About from "@/components/Sections/About/About";
 import Experience from "@/components/Sections/Experience";
 import Contact from "@/components/Sections/Contact";
 // import Stories from "@/components/Sections/Stories";
