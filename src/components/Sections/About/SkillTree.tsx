@@ -1,72 +1,60 @@
 // src/components/about/CardOne.tsx
 import React from "react";
 
-interface Node {
-  id: string;
-  label: string;
-  top: string;
-  left: string;
-  color: string;
+interface SkillItem {
+  name: string;
+  iconClass: string; // Class suffix for the icon (e.g., 'lang-ruby')
 }
 
-const nodes: Node[] = [
-  { id: "1", label: "A", top: "60%", left: "25%", color: "#15b48c" },
-  { id: "2", label: "B", top: "40%", left: "50%", color: "#facc15" }, // yellow-400
-  { id: "3", label: "C", top: "60%", left: "75%", color: "#ef4444" }, // red-500
-  { id: "4", label: "D", top: "20%", left: "50%", color: "#3b82f6" }, // blue-500
-];
+export const SkillTree: React.FC = () => {
+  const skillItems: SkillItem[] = [
+    { name: "HTML", iconClass: "devicon-html5-plain" },
+    { name: "CSS", iconClass: "devicon-css3-plain" },
+    { name: "Tailwind", iconClass: "devicon-tailwindcss-original" },
+    { name: "JavaScript", iconClass: "devicon-javascript-plain" },
+    { name: "BootStrap", iconClass: "devicon-bootstrap-plain" },
+    { name: "Vue.JS", iconClass: "devicon-vuejs-plain" },
+    { name: "Node JS", iconClass: "devicon-nodejs-plain" },
+    { name: "PHP", iconClass: "devicon-php-plain" },
+    { name: "TypeScript", iconClass: "devicon-typescript-plain" },
+    { name: "MySql", iconClass: "devicon-mysql-original" },
+    { name: "PostgreSQL", iconClass: "devicon-postgresql-plain" },
+    { name: "MongoDB", iconClass: "devicon-mongodb-plain" },
+    { name: "VScode", iconClass: "devicon-vscode-plain" },
+    { name: "Gitlab", iconClass: "devicon-gitlab-plain" },
+    { name: "GitHub", iconClass: "devicon-github-original" },
+    { name: "StackOverFlow", iconClass: "devicon-stackoverflow-plain" },
+    { name: "Flutter", iconClass: "devicon-flutter-plain" },
+    { name: "Next.JS", iconClass: "devicon-nextjs-plain" },
+    { name: "Figma", iconClass: "devicon-figma-plain" },
+    { name: "webpack", iconClass: "devicon-webpack-plain" },
+    { name: "Jquery", iconClass: "devicon-jquery-plain" },
+    { name: "Python", iconClass: "devicon-python-plain" },
+    { name: "Adroid Studio", iconClass: "devicon-androidstudio-plain" },
+    { name: "Visual Studio", iconClass: "devicon-visualstudio-plain" },
+    { name: "Ubuntu", iconClass: "devicon-ubuntu-plain" },
+    { name: "Algorithms", iconClass: "devicon-thealgorithms-plain" },
+    // { name: "Visual Studio", iconClass: "devicon-visualstudio-plain" },
+  ];
 
-// Define connections between nodes by index
-const connections: [number, number][] = [
-  [0, 1],
-  [1, 2],
-  [1, 3],
-];
-
-export const SkillTree: React.FC = () => (
-  <div className="w-full h-full relative">
-    {/* Lines */}
-    <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
-      {connections.map(([from, to], i) => {
-        const fromNode = nodes[from];
-        const toNode = nodes[to];
-
-        // Convert percentages to numbers for path calculation
-        const fromX = parseFloat(fromNode.left) / 100;
-        const fromY = parseFloat(fromNode.top) / 100;
-        const toX = parseFloat(toNode.left) / 100;
-        const toY = parseFloat(toNode.top) / 100;
-
-        // Use cubic Bezier curve for crooked/curved lines
-        const path = `
-          M ${fromX * 100}% ${fromY * 100}%
-          C ${(fromX * 100 + toX * 100) / 2}% ${fromY * 100}%,
-            ${(fromX * 100 + toX * 100) / 2}% ${toY * 100}%,
-            ${toX * 100}% ${toY * 100}%
-        `;
-
-        return (
-          <path
-            key={i}
-            d={path}
-            stroke="#ccc"
-            strokeWidth="2"
-            fill="none"
-          />
-        );
-      })}
-    </svg>
-
-    {/* Nodes */}
-    {nodes.map((node) => (
-      <div
-        key={node.id}
-        className="absolute w-12 h-12 rounded-full flex items-center justify-center text-white cursor-pointer"
-        style={{ top: node.top, left: node.left, backgroundColor: node.color }}
-        title={`Node ${node.label}`}
-      >
-        {node.label}
+  return (
+    <div className="w-full flex flex-col justify-center items-center"> {/* Added items-center for horizontal centering */}
+      <div className="w-full flex justify-center py-8"> {/* Title container: full width but centered */}
+        <h1 className="text-xl font-bold text-gray-600 text-center">Technologies & Tools</h1> {/* Added text-center for safety */}
       </div>
-    ))}
-  </div>
-);
+      <div className="max-w-full w-[80%] relative flex flex-row flex-wrap justify-center gap-2 sm:gap-5 mx-auto"> {/* Added mx-auto to center the 80% block */}
+        {skillItems.map((item, index) => (
+          <div key={index} className="w-16 sm:w-20 flex flex-col items-center"> {/* Responsive width */}
+            <i className={`${item.iconClass} text-3xl sm:text-4xl colored`} /> {/* Responsive icon size */}
+            <p className="text-xs mt-1 font-bold text-[#15b48c] italic text-center max-w-full"> {/* Centered label */}
+              {item.name}
+            </p>
+          </div>
+        ))}
+      </div>
+      <div className="w-full flex justify-center py-8"> {/* Title container: full width but centered */}
+        <p className="text-sm text-gray-600 text-center">All the things included above are my Skill with hand on experienced.</p> {/* Added text-center for alignment */}
+      </div>
+    </div>
+  );
+};

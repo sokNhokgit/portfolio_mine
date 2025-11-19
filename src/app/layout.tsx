@@ -11,6 +11,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"></link>
       </head>
       <body className="bg-gray-50 text-gray-900 scroll-smooth">
         <Navbar />

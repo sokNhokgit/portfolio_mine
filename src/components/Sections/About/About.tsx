@@ -39,7 +39,7 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-white flex flex-col px-6 overflow-hidden">
+    <div className="min-h-screen w-full bg-white flex flex-col overflow-hidden">
       <AboutNavigation
         tabs={tabs}
         activeTab={activeTab}
@@ -51,7 +51,7 @@ export default function About() {
       />
 
       {/* --- Content Container --- */}
-      <div className="relative w-full max-w-6xl mx-auto h-[500px]">
+      <div className="relative w-full max-w-7xl mx-auto h-[500px]">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={activeTab}

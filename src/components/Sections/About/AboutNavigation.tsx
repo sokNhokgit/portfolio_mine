@@ -24,7 +24,7 @@ export const AboutNavigation: React.FC<AboutNavigationProps> = ({
   setDirection,
 }) => {
   return (
-    <div className="flex justify-center items-center mb-12 gap-4 relative z-10">
+    <div className="flex justify-center items-center gap-4 relative z-10">
       {/* Previous Button */}
       <button
         onClick={goPrev}

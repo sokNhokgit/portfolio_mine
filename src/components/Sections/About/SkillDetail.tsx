@@ -1,53 +1,84 @@
-// src/components/about/CardTwo.tsx
 import React from "react";
 
 export const SkillDetail: React.FC = () => (
-  <div className="flex flex-col items-center justify-center p-8 h-full bg-white rounded-lg">
-    <h2 className="text-4xl font-extrabold text-[#15b48c] mb-6">
-      🚀 Core Competencies
+  <div className="flex flex-col justify-center items-center">
+    <h2 className="text-xl font-extrabold py-8 text-[#15b48c]">
+      Soft Skills
     </h2>
-    <p className="text-xl text-gray-600 mb-10 max-w-2xl text-center">
-      My professional focus lies in building efficient, scalable, and highly interactive user interfaces.
+    <p className="text-sm py-2 text-gray-600 max-w-xl text-center">
+      Complementing my technical abilities, I thrive in dynamic team settings with exceptional interpersonal skills and a proactive approach to growth.
     </p>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl">
-      {/* Competency Item 1 */}
-      <div className="p-4 border-l-4 border-yellow-500 bg-gray-50 rounded-md shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">
-          React & Next.js
-        </h3>
-        <p className="text-sm text-gray-500">
-          Deep expertise in component architecture, state management (Zustand/Redux), and server components.
+    <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl"> {/* Increased max-w for wider layout */}
+      <div className="p-6 px-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-md border border-purple-200 hover:shadow-lg transition-shadow"> {/* Added px-8 for extra horizontal padding */}
+        <div className="flex items-center mb-4">
+          <span className="text-3xl mr-4">💬</span>
+          <h3 className="text-xl font-semibold text-gray-900">
+            Communication
+          </h3>
+        </div>
+        <p className="text-base text-gray-600 leading-relaxed">
+          Articulate in conveying complex ideas clearly, fostering open dialogue, and active listening to align teams effectively.
         </p>
       </div>
 
-      {/* Competency Item 2 */}
-      <div className="p-4 border-l-4 border-blue-500 bg-gray-50 rounded-md shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">
-          Styling & UX
-        </h3>
-        <p className="text-sm text-gray-500">
-          Proficient in Tailwind CSS, responsive design, and animations using Framer Motion.
+      <div className="p-6 px-8 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-md border border-green-200 hover:shadow-lg transition-shadow">
+        <div className="flex items-center mb-4">
+          <span className="text-3xl mr-4">👥</span>
+          <h3 className="text-xl font-semibold text-gray-900">
+            Teamwork & Collaboration
+          </h3>
+        </div>
+        <p className="text-base text-gray-600 leading-relaxed">
+          Excel in cross-functional teams, contributing diverse perspectives while supporting collective goals and shared success.
         </p>
       </div>
 
-      {/* Competency Item 3 */}
-      <div className="p-4 border-l-4 border-red-500 bg-gray-50 rounded-md shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">
-          Testing & Quality
-        </h3>
-        <p className="text-sm text-gray-500">
-          Unit testing with Jest/RTL and E2E testing with Cypress to ensure stability.
+      <div className="p-6 px-8 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl shadow-md border border-orange-200 hover:shadow-lg transition-shadow">
+        <div className="flex items-center mb-4">
+          <span className="text-3xl mr-4">🧠</span>
+          <h3 className="text-xl font-semibold text-gray-900">
+            Problem-Solving
+          </h3>
+        </div>
+        <p className="text-base text-gray-600 leading-relaxed">
+          Analytical mindset for tackling challenges creatively, breaking down issues, and implementing innovative, efficient solutions.
         </p>
       </div>
 
-      {/* Competency Item 4 */}
-      <div className="p-4 border-l-4 border-[#15b48c] bg-gray-50 rounded-md shadow-sm">
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">
-          TypeScript
-        </h3>
-        <p className="text-sm text-gray-500">
-          Strong focus on type safety and robust, predictable codebase development.
+      <div className="p-6 px-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-md border border-blue-200 hover:shadow-lg transition-shadow">
+        <div className="flex items-center mb-4">
+          <span className="text-3xl mr-4">⚡</span>
+          <h3 className="text-xl font-semibold text-gray-900">
+            Adaptability
+          </h3>
+        </div>
+        <p className="text-base text-gray-600 leading-relaxed">
+          Quick to embrace change, learn new tools, and pivot strategies in fast-paced environments to deliver consistent results.
+        </p>
+      </div>
+
+      <div className="p-6 px-8 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl shadow-md border border-indigo-200 hover:shadow-lg transition-shadow">
+        <div className="flex items-center mb-4">
+          <span className="text-3xl mr-4">🎯</span>
+          <h3 className="text-xl font-semibold text-gray-900">
+            Time Management
+          </h3>
+        </div>
+        <p className="text-base text-gray-600 leading-relaxed">
+          Prioritize tasks effectively, meet deadlines under pressure, and balance multiple projects without compromising quality.
+        </p>
+      </div>
+
+      <div className="p-6 px-8 bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl shadow-md border border-pink-200 hover:shadow-lg transition-shadow">
+        <div className="flex items-center mb-4">
+          <span className="text-3xl mr-4">💡</span>
+          <h3 className="text-xl font-semibold text-gray-900">
+            Leadership
+          </h3>
+        </div>
+        <p className="text-base text-gray-600 leading-relaxed">
+          Motivate teams, delegate responsibilities, and guide initiatives toward success with empathy and strategic vision.
         </p>
       </div>
     </div>
