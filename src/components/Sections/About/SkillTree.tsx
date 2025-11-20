@@ -3,7 +3,7 @@ import React from "react";
 
 interface SkillItem {
   name: string;
-  iconClass: string; // Class suffix for the icon (e.g., 'lang-ruby')
+  iconClass: string;
 }
 
 export const SkillTree: React.FC = () => {
